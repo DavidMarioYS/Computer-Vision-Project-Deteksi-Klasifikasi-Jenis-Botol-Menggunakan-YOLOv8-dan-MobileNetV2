@@ -11,10 +11,10 @@ import os
 # ---------- Load Models Once ----------
 @st.cache_resource
 def load_models():
-    assert os.path.exists("./FINAL/model/yolo.pt"), "YOLO model file not found!"
-    assert os.path.exists("./FINAL/model/mobilenetv2-tuning.keras"), "MobileNetV2 model file not found!"
-    yolo_model = YOLO("./FINAL/model/yolo.pt")
-    mobilenet_model = tf.keras.models.load_model("./FINAL/model/mobilenetv2-tuning.keras")
+    assert os.path.exists("./model/yolo.pt"), "YOLO model file not found!"
+    assert os.path.exists("./model/mobilenetv2-tuning.keras"), "MobileNetV2 model file not found!"
+    yolo_model = YOLO("./model/yolo.pt")
+    mobilenet_model = tf.keras.models.load_model("./model/mobilenetv2-tuning.keras")
     return yolo_model, mobilenet_model
 
 yolo_model, mobilenet_model = load_models()
