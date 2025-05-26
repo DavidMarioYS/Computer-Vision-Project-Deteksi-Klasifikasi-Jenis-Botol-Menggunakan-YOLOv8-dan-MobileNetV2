@@ -38,20 +38,22 @@ Dataset dibagi ke dalam dua bagian:
 
 ## 🧭 Alur dan Perencanaan Proyek
 
-### 🔹 1. Deteksi Botol dengan YOLOv8
+### 🔹 1. Deteksi Botol dengan YOLOv8 (Ultralytics)
 
-* Menggunakan YOLOv8 untuk mendeteksi keberadaan botol dalam gambar.
-* Hasil deteksi berupa bounding box dan label posisi objek botol.
+* Menggunakan framework **Ultralytics YOLOv8** untuk deteksi objek.
+* Model dilatih untuk mengenali lokasi botol dalam gambar dan memberikan bounding box serta label.
+* Dokumentasi resmi: [https://docs.ultralytics.com/](https://docs.ultralytics.com/)
 
 ### 🔹 2. Klasifikasi Jenis Botol dengan MobileNetV2
 
-* Setelah dideteksi, setiap instance gambar botol dipotong dari hasil deteksi dan diklasifikasikan menggunakan model CNN MobileNetV2.
-* Model ini mengidentifikasi jenis botol berdasarkan fitur visual.
+* Setelah deteksi, area bounding box diekstrak dan diproses oleh model klasifikasi.
+* **MobileNetV2** digunakan karena arsitekturnya ringan dan efisien untuk klasifikasi gambar.
+* Model ini mampu membedakan lima jenis botol berdasarkan fitur visual.
 
-### 🔹 3. Integrasi dan Visualisasi
+### 🔹 3. Integrasi & Visualisasi dengan Streamlit
 
-* Kedua model diintegrasikan dalam pipeline Python untuk menghasilkan prediksi terpadu.
-* Pipeline ini akan diimplementasikan dalam antarmuka **Streamlit** untuk memudahkan pengguna mengunggah gambar, melihat hasil deteksi-klasifikasi, dan mengunduh hasil jika diperlukan.
+* Pipeline deteksi + klasifikasi diintegrasikan dan dibungkus dalam antarmuka pengguna berbasis web menggunakan **Streamlit**.
+* Pengguna dapat mengunggah gambar, melihat hasil deteksi dan klasifikasi, dan mengunduh gambar hasil anotasi.
 
 ---
 
@@ -68,10 +70,10 @@ Dataset dibagi ke dalam dua bagian:
 | Mean Recall (MR)    | 0.9803 |
 | F1 Score (avg)      | 0.9885 |
 
-🔧 **Model disimpan dalam format**:
+📦 **Model disimpan dalam format**:
 
-* `yolo.pt` (format asli PyTorch)
-* `yolo.onnx` (untuk kompatibilitas deployment)
+* `.pt` → format asli dari Ultralytics
+* `.onnx` → untuk deployment lintas platform
 
 ---
 
@@ -84,9 +86,9 @@ Dataset dibagi ke dalam dua bagian:
 | Train Loss          | 1.0408e-04 |
 | Validation Loss     | 0.0035     |
 
-🔧 **Model disimpan dalam format**:
+📦 **Model disimpan dalam format**:
 
-* `mobilenetv2-tuning.keras`
+* `.keras` → format standar dari TensorFlow/Keras
 
 ---
 
@@ -94,19 +96,19 @@ Dataset dibagi ke dalam dua bagian:
 
 ### 🔧 Tools & Teknologi
 
-* **Python** untuk scripting
-* **YOLOv8** (Ultralytics) untuk object detection
-* **TensorFlow + Keras** untuk training model MobileNetV2
+* Python (Jupyter Notebook / Colab / VS Code)
+* **Ultralytics YOLOv8** untuk object detection
+* **TensorFlow + Keras** untuk training klasifikasi
 * **ONNX** sebagai format interoperabilitas model YOLO
 * **Streamlit** untuk UI interaktif berbasis web
 * **OpenCV / PIL** untuk preprocessing gambar dan manipulasi bounding box
 
 ### 🧱 Arsitektur Sistem
 
-1. Upload gambar melalui Streamlit
-2. YOLOv8 mendeteksi botol dan menghasilkan bounding box
-3. Gambar dalam bounding box dipotong lalu diklasifikasi oleh MobileNetV2
-4. Hasil deteksi dan klasifikasi ditampilkan di layar beserta confidence score
+1. Upload gambar oleh pengguna melalui antarmuka Streamlit.
+2. YOLOv8 mendeteksi objek botol dan menghasilkan bounding box.
+3. Tiap area bounding box dipotong dan dikirim ke MobileNetV2 untuk klasifikasi.
+4. Output final berupa gambar anotasi (bounding box + label jenis botol) ditampilkan kepada pengguna.
 
 ---
 
