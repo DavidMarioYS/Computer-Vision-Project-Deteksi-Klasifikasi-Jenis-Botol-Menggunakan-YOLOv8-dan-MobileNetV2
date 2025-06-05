@@ -1,4 +1,3 @@
-
 # 🧠 Computer Vision Project: Deteksi & Klasifikasi Jenis Botol Menggunakan YOLOv8 dan MobileNetV2
 
 ## 📌 Deskripsi Singkat
