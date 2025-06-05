@@ -1,4 +1,3 @@
-
 # 🧠 Computer Vision Project: Deteksi & Klasifikasi Jenis Botol Menggunakan YOLOv8 dan MobileNetV2
 
 ## 📌 Deskripsi Singkat
@@ -77,14 +76,34 @@ Dataset dibagi ke dalam dua bagian:
 
 ---
 
+
+---
+
 ### 🧩 MobileNetV2 – Image Classification
 
-| Metrik              | Nilai      |
-| ------------------- | ---------- |
-| Accuracy (train)    | 1.0000     |
-| Validation Accuracy | 0.9994     |
-| Train Loss          | 1.0408e-04 |
-| Validation Loss     | 0.0035     |
+| Metrik              | Nilai  |
+| ------------------- | ------ |
+| Accuracy (train)    | 0.9982 |
+| Validation Accuracy | 0.9708 |
+| Train Loss          | 0.0143 |
+| Validation Loss     | 0.0922 |
+
+**Classification Report:**
+
+```
+                 precision    recall  f1-score   support
+
+   Beer Bottles       0.98      0.97      0.97      1000
+Plastic Bottles       0.99      1.00      0.99      1000
+    Soda Bottle       0.95      0.96      0.96      1000
+   Water Bottle       0.98      0.98      0.98      1000
+    Wine Bottle       0.96      0.95      0.96      1000
+
+       accuracy                           0.97      5000
+      macro avg       0.97      0.97      0.97      5000
+   weighted avg       0.97      0.97      0.97      5000
+```
+
 
 📦 **Model disimpan dalam format**:
 
